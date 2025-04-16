@@ -1,0 +1,8 @@
+api:
+  logging:
+    enabled: true
+    level: INFO
+    log-headers: false
+    log-execution-time: true
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n"
