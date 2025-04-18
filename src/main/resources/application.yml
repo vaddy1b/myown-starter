@@ -1,4 +1,4 @@
-api:
+starter:
   logging:
     enabled: true
     level: INFO

@@ -1,12 +1,13 @@
 package ru.babich.starter.auto_configuration;
 
-import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.babich.starter.aspect.InternalAspect;
 import ru.babich.starter.properties.StarterLoggingProperties;
+
 @Configuration
-@AutoConfiguration
+@EnableAutoConfiguration
 public class StarterLoggingAutoConfiguration {
     @Bean
     public InternalAspect apiLoggingAspect() {

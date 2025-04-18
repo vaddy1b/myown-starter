@@ -12,7 +12,6 @@ import ru.babich.starter.properties.StarterLoggingProperties;
 
 @Slf4j
 @Aspect
-@Component
 @RequiredArgsConstructor
 public class InternalAspect {
 
@@ -20,23 +19,17 @@ public class InternalAspect {
 
     @Before("@annotation(ru.babich.starter.annotation.InternalLogging)")
     public void logBeforeMethodExecution() {
-        if (properties.isEnabled()) {
-            logAtLevel("Начало выполнения метода с аннотацией @Loggable");
-        }
+        logAtLevel("Начало выполнения метода с аннотацией @Loggable");
     }
 
     @After("@annotation(ru.babich.starter.annotation.InternalLogging)")
     public void logAfterMethodExecution() {
-        if (properties.isEnabled()) {
-            logAtLevel("Завершение выполнения метода с аннотацией @Loggable");
-        }
+        logAtLevel("Завершение выполнения метода с аннотацией @Loggable");
+
     }
 
     @Around("@annotation(ru.babich.starter.annotation.InternalLogging)")
     public Object measureMethodExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
-        if (!properties.isEnabled()) {
-            return joinPoint.proceed();
-        }
 
         String methodName = joinPoint.getSignature().getName();
         String className = joinPoint.getTarget().getClass().getSimpleName();
@@ -46,8 +39,8 @@ public class InternalAspect {
             Object result = joinPoint.proceed();
             long executionTime = System.currentTimeMillis() - startTime;
 
-                logAtLevel("<== {}.{}() - результат: {} (время выполнения: {} мс)",
-                        className, methodName, result, executionTime);
+            logAtLevel("<== {}.{}() - результат: {} (время выполнения: {} мс)",
+                    className, methodName, result, executionTime);
             return result;
         } catch (Exception e) {
             long executionTime = System.currentTimeMillis() - startTime;
